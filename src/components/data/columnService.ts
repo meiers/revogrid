@@ -279,7 +279,7 @@ export default class ColumnService implements ColumnServiceI {
       const rgRow: RevoGrid.DataFormat[] = [];
       for (let prop of rangeProps) {
         const item = getSourceItem(store, i);
-        rgRow.push(item[prop]);
+        rgRow.push(item[prop]?.text || item[prop]);
       }
       toCopy.push(rgRow);
     }
@@ -290,7 +290,7 @@ export default class ColumnService implements ColumnServiceI {
     if (typeof val === 'undefined' || val === null) {
       return '';
     }
-    return val.toString();
+    return (val?.text || val).toString();
   }
 
   destroy() {
